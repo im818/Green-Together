@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { apolloClient } from "./components/apollo-client";
+import { Component } from "react";
+import { ApolloProvider } from "@apollo/client";
+import { login } from "./components/login-user"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  handleLogin() {
+    login();
+  }
+
+  render() {
+    return (
+      <ApolloProvider client={apolloClient}>
+        <div id="main">
+          <button onClick={this.handleLogin}>Login</button>
+        </div>
+      </ApolloProvider>
+    );
+  }
 }
 
 export default App;
